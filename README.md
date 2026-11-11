@@ -3,13 +3,13 @@
 一个**本地优先**的四级真题练习网页：真题阅读、听力题组、选词填空、长篇匹配、写作/翻译草稿、错题三阶段、真题词库。
 
 > 当前版本：**v5.12.0**  
-> 状态：本地基线已验证；**尚未发布、尚未上传 GitHub、尚未授权第三方**。
+> 状态：本地基线已验证；**公开演示版已发布到 GitHub Pages**；完整题库/音频仍只在本机，不随公开仓库分发。
 
 ## 两种发布包
 
 | 包 | 内容 | 用途 |
 | --- | --- | --- |
-| `release/cet4-score-booster-public-5.12.0.zip` | 代码 + 自写演示阅读，**不含任何真题 PDF/MP3/题库** | 可公开上传，GitHub Pages 演示 |
+| `release/cet4-score-booster-public-5.12.0.zip` | 代码 + 自写演示阅读，**不含任何真题 PDF/MP3/题库** | 已发布到 GitHub Pages 演示 |
 | `release/cet4-score-booster-local-5.12.0.zip` | 代码 + 本机真题数据/音频 | **仅本人本地使用，不可公开再分发** |
 
 完整题库和音频有第三方来源，公开再分发许可未确认，因此 GitHub 公开仓库只放 `docs/` 演示版。
@@ -103,18 +103,15 @@ node .\scripts\set-version.mjs
 
 脚本会统一更新 `index.html`、`docs/index.html` 和启动脚本中的 `?v=` 查询串。不要逐行手改缓存版本。
 
-## GitHub Pages（待确认后执行）
+## GitHub Pages（已启用）
 
-1. 创建仓库（名称由仓库所有者确认）。
-2. 提交代码与 `docs/`；**不要提交** `assets/true-exams/`、`assets/library/` 和真题数据 JS（`.gitignore` 已排除）。
-3. Settings → Pages → Build and deployment → Source: **Deploy from a branch**；Branch: `main`，Folder: `/docs`。
-4. 站点地址形如：
+- 仓库：<https://github.com/AAAsuperman/cet4-score-booster>
+- 在线演示：<https://aaasuperman.github.io/cet4-score-booster/>
+- Pages 源：`main` 分支 / `docs/` 目录
 
-```text
-https://<你的GitHub用户名>.github.io/<仓库名>/
-```
+公开演示版顶部始终标注“非真题”；真实题库只在本地完整版使用。仓库没有提交 `assets/true-exams/`、`assets/library/` 或真题数据 JS。
 
-公开演示版顶部始终标注“非真题”；真实题库只在本地完整版使用。
+后续更新：提交并推送 `main` 后，Pages 会自动重新构建。
 
 ### 本地 Git 命令
 
@@ -149,3 +146,6 @@ git push -u origin main
 完整包包含本机第三方资料，**不可公开上传**；公开包只有代码和自写演示数据。
 
 > 注意：完整包移除了 `assets/library` 目录联接，因为 ZIP 不能可靠携带指向本机资料目录的联接。阅读/听力结构化题库不受影响；资料库的原始文件链接会失效，需要在本机重新建立联接或手动放置资料。
+
+
+> 许可证：代码许可证仍待仓库所有者确认；未添加正式 LICENSE 前，默认保留权利。建议 MIT（见 `LICENSE-CODE-PROPOSAL.md`）。
