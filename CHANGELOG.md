@@ -22,6 +22,10 @@
 - 答案来自第三方答案表/原卷 KEYS，非官方。
 - 本地资料包中的 PDF/MP3 不进入公开仓库。
 
+### 许可证
+
+- 仓库所有者确认代码与自写演示数据采用 MIT License；正式文件 `LICENSE`。
+
 ### 工程
 
 - 单一 `VERSION` 文件；`node scripts/set-version.mjs` 统一更新资源查询串。

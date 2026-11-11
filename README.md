@@ -156,12 +156,12 @@ git push -u origin main
 
 ## 资料许可
 
-- 代码：建议 MIT，需所有者确认后再添加正式 `LICENSE`。
+- 代码：**MIT**（见仓库根目录 `LICENSE`，版权署名 AAAsuperman）。
 - 自写公开演示数据：可与代码同许可。
 - `CET46-Resources` 真题 PDF/MP3/题库：第三方整理，非官方；再分发许可未确认，不进入公开包。
 - 答案来自第三方答案表/原卷 KEYS；OCR/ASR 文本是候选，不等于人工核验。
 
-详见 `THIRD_PARTY.md`、`LICENSE-CODE-PROPOSAL.md`、`BANK-STATUS.md`（后者仅本地）。
+详见 `LICENSE`、`THIRD_PARTY.md`、`BANK-STATUS.md`（后者仅本地）。
 
 ## 干净发布包验证（2026-11-11）
 
@@ -175,4 +175,4 @@ git push -u origin main
 > 注意：完整包移除了 `assets/library` 目录联接，因为 ZIP 不能可靠携带指向本机资料目录的联接。阅读/听力结构化题库不受影响；资料库的原始文件链接会失效，需要在本机重新建立联接或手动放置资料。
 
 
-> 许可证：代码许可证仍待仓库所有者确认；未添加正式 LICENSE 前，默认保留权利。建议 MIT（见 `LICENSE-CODE-PROPOSAL.md`）。
+> 许可证：代码和自写演示数据采用 MIT License（Copyright 2026 AAAsuperman）；第三方真题/音频不在该许可范围内。

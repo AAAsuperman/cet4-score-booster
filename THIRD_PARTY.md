@@ -15,6 +15,6 @@
 
 ## 许可证
 
-- 代码许可证尚未最终确定；建议 MIT（见 `LICENSE-CODE-PROPOSAL.md`），需仓库所有者确认后再添加正式 LICENSE。
+- 代码和自写演示数据已采用 MIT License（见根目录 `LICENSE`，Copyright 2026 AAAsuperman）。
 - 公开演示数据可与代码采用同一许可证；第三方真题/音频不在授权范围内。
 - 任何公开部署前，请再次确认第三方资料的使用条款与再分发许可。
