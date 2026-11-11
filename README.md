@@ -14,6 +14,33 @@
 
 完整题库和音频有第三方来源，公开再分发许可未确认，因此 GitHub 公开仓库只放 `docs/` 演示版。
 
+### 从 GitHub 下载公开演示包（任何人都可以）
+
+1. 打开 Releases：<https://github.com/AAAsuperman/cet4-score-booster/releases/tag/v5.12.0>
+2. 下载 `cet4-score-booster-public-5.12.0.zip`（约 0.2 MB）。
+3. 解压后进入目录：
+
+```powershell
+Expand-Archive -LiteralPath ".\cet4-score-booster-public-5.12.0.zip" -DestinationPath ".\cet4-score-booster-public" -Force
+cd .\cet4-score-booster-public
+```
+
+4. 启动并打开：
+
+```powershell
+python -m http.server 8790 --bind 127.0.0.1
+```
+
+```text
+http://127.0.0.1:8790/
+```
+
+公开包只有自写演示阅读，**没有真题音频是预期行为**。
+
+### 本地完整包（不公开下载）
+
+完整包 `release/cet4-score-booster-local-5.12.0.zip` 只在仓库所有者的本机；不要上传到 GitHub Release。它含真实题库和 MP3，用于本机验证和使用。
+
 ## 下载与解压
 
 ### 本地完整包
