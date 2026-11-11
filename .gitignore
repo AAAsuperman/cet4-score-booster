@@ -1,0 +1,36 @@
+# Local, third-party or private exam assets. Never commit or redistribute these.
+assets/true-exams/
+assets/library/
+assets/library-data.js
+assets/library-manifest.json
+assets/true-data.js
+assets/real-data.js
+assets/reading-banks.js
+assets/reading-extra.js
+assets/real-tags.js
+assets/reading-details-*.js
+assets/listening-extra.js
+assets/listening-transcripts.js
+assets/fill-extra.js
+assets/match-extra.js
+assets/output-extra.js
+
+# Local evidence, OCR/ASR outputs, screenshots and test profiles
+BANK-STATUS.md
+*.log
+screens/
+answer-pages/
+ocr-*/
+ocr-*.json
+asr-*.json
+chrome-debug-profile/
+whisper-models/
+venv/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+release/
