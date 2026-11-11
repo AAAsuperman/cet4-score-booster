@@ -813,17 +813,23 @@
     }
   }
 
-  function realVocabOtherContext(term, excludeQuestionId) {
+  function realVocabOtherContext(term, excludeQuestionId, sourceText) {
     const re = new RegExp('\\b' + escapeRegExp(term) + '\\b', 'i');
+    const normalize = function (x) { return String(x || '').replace(/\s+/g, ' ').trim().toLowerCase(); };
+    const sourceNorm = normalize(sourceText);
     for (const bank of (window.CET4ReadingBanks || [])) {
       for (const q of (bank.questions || [])) {
         if (q.id === excludeQuestionId) continue;
         if (re.test(q.stem) || (q.options || []).some(function (o) { return re.test(o); })) {
-          return { bank: bank, question: q, text: q.stem, kind: '题干/选项' };
+          if (!sourceNorm || normalize(q.stem) !== sourceNorm) {
+            return { bank: bank, question: q, text: q.stem, kind: '题干/选项' };
+          }
         }
         const p = (bank.paragraphs || []).find(function (x) { return x.id === q.passageId; });
         const s = p && (p.sentences || []).find(function (x) { return re.test(x.text); });
-        if (s) return { bank: bank, question: q, text: s.text, kind: '原文' };
+        if (s && (!sourceNorm || normalize(s.text) !== sourceNorm)) {
+          return { bank: bank, question: q, text: s.text, kind: '原文' };
+        }
       }
     }
     return null;
@@ -935,7 +941,7 @@
     const wordReviewHTML = wr && saved[wr.key] ? (function () {
       const e = saved[wr.key];
       const src = (e.sources || [])[0];
-      const other = realVocabOtherContext(e.term, src && src.questionId);
+      const other = realVocabOtherContext(e.term, src && src.questionId, src && src.sentence);
       const re = new RegExp('\\b' + escapeRegExp(e.term) + '\\b', 'i');
       const clue = src && src.sentence ? src.sentence.replace(re, '____') : '';
       return '<section class="word-review-card"><div class="word-review-top"><span>真题词复习</span><button type="button" class="text-link-button" data-action="close-word-review">先不复习</button></div>' +
@@ -974,7 +980,7 @@
       '<section class="panel"><div class="panel-topline"><div><span class="section-kicker">我的词</span><h2>先回到原句，再看另一处语境</h2></div><span class="panel-meta">' + (entries.length ? entries.length + ' 个' : '还没有') + '</span></div>' +
       (entries.length ? '<div class="wordbook-list">' + savedPageItems.map(function (e) {
         const src = (e.sources || [])[0];
-        const other = realVocabOtherContext(e.term, src && src.questionId);
+        const other = realVocabOtherContext(e.term, src && src.questionId, src && src.sentence);
         return '<article class="wordbook-card"><div class="wordbook-head"><div><b>' + esc(e.term) + '</b><span>' + esc(e.meaning) + '</span></div><div class="wordbook-head-actions"><em>' + (e.sources || []).length + ' 个来源' + ((e.reasons || []).length ? ' · 失分词' : '') + '</em><button type="button" class="btn btn-quiet btn-small" data-action="review-word" data-word-key="' + esc(String(e.term).toLowerCase()) + '">复习</button></div></div>' +
           '<p class="wordbook-note">' + esc(e.note || '') + '</p>' +
           (src ? '<div class="wordbook-source"><span>' + esc(src.sourceKind || '原句') + ' · ' + esc(src.year) + ' 第' + src.set + '套第' + src.number + '题</span><p>' + esc(src.sentence || '') + '</p><button type="button" class="text-link-button" data-action="start-real-question" data-question-id="' + esc(src.questionId) + '">回到原题</button></div>' : '') +
